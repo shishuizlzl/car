@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/title_header"
+        layout="@layout/common_headerbar" />
+    <com.che.app.weironggou.util.PullToRefreshLayout
+        android:id="@+id/refresh_view_One"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/allview_refresh_head" />
+        <com.che.app.weironggou.util.PullableListView
+            android:id="@+id/zhu_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:divider="#000000"
+            android:dividerHeight="0.01dp"
+            android:scrollbars="none" />
+        <include layout="@layout/allview_load_more" />
+    </com.che.app.weironggou.util.PullToRefreshLayout>
+</LinearLayout>
