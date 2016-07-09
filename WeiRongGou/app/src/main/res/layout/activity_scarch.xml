@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="请输入您想搜查的结果" />
+
 
     <Button
         android:layout_width="wrap_content"

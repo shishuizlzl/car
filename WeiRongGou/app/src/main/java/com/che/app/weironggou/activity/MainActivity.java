@@ -2,6 +2,7 @@ package com.che.app.weironggou.activity;
 
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,7 +20,7 @@ import com.che.app.weironggou.fragment.MessageFragment;
 import com.che.app.weironggou.fragment.NearbyFragment;
 import com.che.app.weironggou.util.SlideOutInter;
 
-public class MainActivity extends BaseActivity implements SlideOutInter{
+public class MainActivity extends FragmentActivity implements SlideOutInter{
     private DrawerLayout drawerLayout;
     private LinearLayout viewZhu;
     private Fragment[] fragments;
