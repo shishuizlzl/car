@@ -1,46 +1,66 @@
-package com.che.app.weironggou;
+package com.che.app.weironggou.activity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.che.app.weironggou.R;
+import com.che.app.weironggou.base.BaseActivity;
 import com.che.app.weironggou.fragment.HomeFragment;
 import com.che.app.weironggou.fragment.MessageFragment;
 import com.che.app.weironggou.fragment.NearbyFragment;
+import com.che.app.weironggou.util.SlideOutInter;
 
-public class MainActivity extends FragmentActivity{
+public class MainActivity extends BaseActivity implements SlideOutInter{
     private DrawerLayout drawerLayout;
     private LinearLayout viewZhu;
     private Fragment[] fragments;
     private HomeFragment homeFragment;
     private NearbyFragment nearbyFragment;
     private MessageFragment messageFragment;
+
+
+
     private ImageView[] imagebuttons;
     private TextView[] textviews;
     private FragmentTransaction transaction;
     private int index;
     // 当前fragment的index
     private int currentTabIndex;
-
+    @Override
+    public int setLayout() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        transaction = getSupportFragmentManager().beginTransaction();
+        return  R.layout.activity_main;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        transaction = getSupportFragmentManager().beginTransaction();
-        setContentView(R.layout.activity_main);
+    protected void initView() {
         //侧边栏加载
         initDrawerLayout();
         //初始化数据
         init();
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public void setMessage(boolean boll) {
+        if(boll == true){
+            drawerLayout.openDrawer(GravityCompat.START);
+        }
     }
     private void init(){
         viewZhu = (LinearLayout) findViewById(R.id.mainpage);
@@ -73,7 +93,9 @@ public class MainActivity extends FragmentActivity{
             case R.id.re_message:
                 index = 2;
                 break;
+
         }
+        drawerLayout.closeDrawer(GravityCompat.START);
         if (currentTabIndex != index) {
             FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
             trx.hide(fragments[currentTabIndex]);

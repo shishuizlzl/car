@@ -16,7 +16,7 @@
         <include
             android:id="@+id/inclu_life"
             layout="@layout/menu_left_layout"
-            android:layout_width="300dp"
+            android:layout_width="600px"
             android:layout_height="match_parent"
             android:layout_gravity="left" />
     </android.support.v4.widget.DrawerLayout>

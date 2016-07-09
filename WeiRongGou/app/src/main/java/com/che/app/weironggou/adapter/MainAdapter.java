@@ -17,13 +17,23 @@ import java.util.List;
 /**
  * Created by zhaolong on 16/7/6.
  */
-public class zhuAdapter extends BaseAdapter {
+public class MainAdapter extends BaseAdapter implements View.OnClickListener {
     private List<String> mList;
     private Context context;
+    private OnMainClickListener onMainClickListener;
+
+
+    public interface OnMainClickListener{
+        void  setPoition(int poition);
+    }
+    public void setClickListener(OnMainClickListener onMainClickListener){
+        this.onMainClickListener=onMainClickListener;
+
+    }
 
 
 
-    public  zhuAdapter(Context context , List<String> mList){
+    public MainAdapter(Context context, List<String> mList){
 
         this.context = context;
         this.mList=mList;
@@ -53,6 +63,11 @@ public class zhuAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.zhu_adapter_item,null);
             viewHollde=new viewHollde();
             viewHollde.headImage = (ImageView)convertView.findViewById(R.id.headImage);
+            viewHollde.layRound_one = (LinearLayout)convertView.findViewById(R.id.layRound_one);
+            viewHollde.layRound_two = (LinearLayout)convertView.findViewById(R.id.layRound_two);
+            viewHollde.layRound_three = (LinearLayout)convertView.findViewById(R.id.layRound_three);
+            viewHollde.layRound_four = (LinearLayout)convertView.findViewById(R.id.layRound_four);
+            viewHollde.layRound_five = (LinearLayout)convertView.findViewById(R.id.layRound_five);
             viewHollde.roundImageOne = (RoundImageView)convertView.findViewById(R.id.roundImageOne);
             viewHollde.roundName_one = (TextView)convertView.findViewById(R.id.roundName_one);
             viewHollde.roundGender_one = (ImageView)convertView.findViewById(R.id.roundGender_one);
@@ -80,8 +95,11 @@ public class zhuAdapter extends BaseAdapter {
             viewHollde = (viewHollde)convertView.getTag();
         }
 
-
-
+       viewHollde.layRound_one.setOnClickListener(this);
+        viewHollde.layRound_two.setOnClickListener(this);
+        viewHollde.layRound_three.setOnClickListener(this);
+        viewHollde.layRound_four.setOnClickListener(this);
+        viewHollde.layRound_five.setOnClickListener(this);
 
 
 
@@ -90,8 +108,42 @@ public class zhuAdapter extends BaseAdapter {
 
          return convertView;
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.layRound_one:
+                onMainClickListener.setPoition(1);
+                break;
+            case R.id.layRound_two:
+                onMainClickListener.setPoition(2);
+                break;
+            case R.id.layRound_three:
+                onMainClickListener.setPoition(3);
+                break;
+            case R.id.layRound_four:
+                onMainClickListener.setPoition(4);
+                break;
+            case R.id.layRound_five:
+                onMainClickListener.setPoition(5);
+                break;
+            default:
+                break;
+
+        }
+
+
+
+
+    }
+
     static class viewHollde{
        ImageView headImage;//头部头像
+        LinearLayout layRound_one;
+        LinearLayout layRound_two;
+        LinearLayout layRound_three;
+        LinearLayout layRound_four;
+        LinearLayout layRound_five;
         //第一张图片信息
         RoundImageView roundImageOne;
         TextView roundName_one;
